@@ -44,7 +44,7 @@ export default {
     taskStore (){
       axios.post('http://127.0.0.1:8000/task', 
       {name: this.name})
-      .then(response => console.log(response))
+      .then(response => this.$emit('task-added', response))
       .catch(error => console.log(error)); 
     }
   }

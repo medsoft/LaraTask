@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <add-task></add-task>
+        <add-task @task-added="refresh" > </add-task>
         <ul class="list-group">
             <li class="list-group-item" v-for="task in tasks.data" :key="task.id">
                 <a href="#">{{ task.name }}</a>
@@ -30,7 +30,12 @@
                          .then(response =>{
                              this.tasks = response.data ; 
                          });
+                },
+
+                refresh (tasks){
+                    this.tasks =  tasks.data ; 
                 }
+
             },
         mounted() {
             console.log('Component mounted.')

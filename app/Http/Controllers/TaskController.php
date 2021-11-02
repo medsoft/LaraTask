@@ -36,7 +36,13 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        Task::create ($request->all());
+        $task  =  Task::create ($request->all());
+
+        if($task)
+        {
+            $tasks  =  Task::paginate(3) ; 
+            return response ()->json($tasks) ; 
+        }
     }
 
     /**
